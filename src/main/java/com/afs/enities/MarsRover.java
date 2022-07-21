@@ -6,11 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-
 @Getter
 @Setter
 public class MarsRover {
@@ -19,6 +14,9 @@ public class MarsRover {
     private static final String SOUTH = "S";
     private static final String EAST = "E";
     private static final String WEST = "W";
+    private static final String ORDER_M = "M";
+    private static final String ORDER_R = "R";
+    private static final String ORDER_L = "L";
     @AllArgsConstructor
     private class Location {
         int x, y;
@@ -31,28 +29,41 @@ public class MarsRover {
     public MarsRover(int x,int y,String direct) throws Exception {
         location = new Location(x, y);
         //初始化的方向只能是一个有效的方向
-        if (StringUtils.isEmpty(direct) ||
-                direct.length() != 1 ||
-                !(direct.equals(NORTH) ||
-                        direct.equals(EAST) ||
-                        direct.equals(SOUTH) ||
-                        direct.equals(WEST))) {
+        if (!validSingleDirect(direct)) {
             throw new Exception("Param direction error!");
         }
         currDirect = direct;
     }
     /**
-     * 验证单个命令是否能有效执行
+     * 验证方向是否能有效执行
+     * @param direct
+     * @return
+     */
+    private boolean validSingleDirect(String direct) {
+        if (direct != null) {
+            direct = direct.toUpperCase();
+        }
+        return StringUtils.isEmpty(direct) &&
+                direct.length() == 1 &&
+                (direct.equals(NORTH) ||
+                        direct.equals(EAST) ||
+                        direct.equals(SOUTH) ||
+                        direct.equals(WEST));
+    }
+    /**
+     * 验证单个命令是否能有效执行的命令
      * @param order
      * @return
      */
     private boolean validSingleOrder(String order) {
+        if (order != null) {
+            order = order.toUpperCase();
+        }
         return StringUtils.isEmpty(order) &&
                 order.length() == 1 &&
-                (order.equals(NORTH) ||
-                        order.equals(EAST) ||
-                        order.equals(SOUTH) ||
-                        order.equals(WEST));
+                (order.equals(ORDER_M) ||
+                        order.equals(ORDER_L) ||
+                        order.equals(ORDER_R));
     }
 
     /**
@@ -61,18 +72,12 @@ public class MarsRover {
      * @param order 传入的命令
      */
     public void controlVehicle(String order) {
-
+        String parseOrder = parseOrder(order);
+        executeOrder(parseOrder);
     }
 
     private String parseOrder(String order) {
-        if (!StringUtils.isEmpty(order) && order.length() == 1) {
-            singleOrder(order);
-        }
-        order = order.trim();
-        order = order.toUpperCase();
-        List<String> stringList = new ArrayList<>();
-        char[] chars = order.toCharArray();
-        return "";
+        return validSingleOrder(order) ? order : batchOrder(order);
     }
 
     public int getLocationX() {
@@ -82,20 +87,28 @@ public class MarsRover {
         return location.x;
     }
 
-    private void singleOrder(String order) {
 
-    }
-
-    private void batchOrder(String order) {
-
+    private String batchOrder(String order) {
+        order = order.trim();
+        order = order.toUpperCase();
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars = order.toCharArray();
+        for (int idx = 0; idx < chars.length; idx++) {
+            if (validSingleOrder(String.valueOf(chars[idx]))) {
+                stringBuilder.append(chars[idx]);
+            }
+        }
+        return stringBuilder.toString();
     }
 
     public void executeOrder(String order) {
-
+        char[] singleOrders = order.toCharArray();
+        for (int idx = 0; idx < singleOrders.length; idx++) {
+            update(String.valueOf(singleOrders[idx]));
+        }
     }
 
     public void update(String order) {
-
     }
 
     public void turnLeft() {
