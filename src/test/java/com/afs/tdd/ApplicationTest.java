@@ -51,6 +51,47 @@ class ApplicationTest {
     }
 
     @Test
+    void should_heading_W_heading_N_given_L()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "N");
+        //when
+        marsRover.controlVehicle("L");
+        //then
+        String exceptDirect = "W";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
+    @Test
+    void should_heading_N_heading_E_given_L()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "E");
+        //when
+        marsRover.controlVehicle("L");
+        //then
+        String exceptDirect = "N";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
+    @Test
+    void should_heading_E_heading_N_given_R()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "N");
+        //when
+        marsRover.controlVehicle("R");
+        //then
+        String exceptDirect = "E";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
+    @Test
+    void should_heading_S_heading_E_given_R()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "E");
+        //when
+        marsRover.controlVehicle("R");
+        //then
+        String exceptDirect = "S";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
+
+    @Test
     void should_heading_N_when_order_R_given_heading_W()throws Exception {
         //given
         MarsRover marsRover = new MarsRover(0, 0, "W");
@@ -64,7 +105,29 @@ class ApplicationTest {
         assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
         assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
+    @Test
+    void should_heading_N_heading_W_L_given_L()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "W");
+        //when
+        marsRover.controlVehicle("R");
+        //then
+        String exceptDirect = "N";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
 
+    @Test
+    void should_local_4_5_when_local_5_5_W_given_M()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(5, 5, "W");
+        //when
+        marsRover.controlVehicle("M");
+        //then
+        int exceptX  = 4;
+        int exceptY  = 5;
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+    }
     @Test
     void should_heading_E_when_heading_S_given_L()throws Exception {
         //given
