@@ -9,16 +9,15 @@ import org.assertj.core.api.Fail;
 class ApplicationTest {
     @Test
     void should_init_right_direct_when_init_mars_rover_given_direct_A() {
-        //given
         try {
+            //given
             MarsRover marsRover = new MarsRover(0, 0, "A");
+            //when
             Fail.fail("Param direction error!");
         } catch (Exception e) {
+            //then
             Assertions.assertThat(e).hasMessageContaining("Param direction error!");
         }
-        //when
-
-        //then
     }
 
     @Test

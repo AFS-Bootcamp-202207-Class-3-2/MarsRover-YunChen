@@ -101,7 +101,7 @@ public class MarsRover {
         return stringBuilder.toString();
     }
 
-    public void executeOrder(String order) {
+    private void executeOrder(String order) {
         char[] singleOrders = order.toCharArray();
         for (int idx = 0; idx < singleOrders.length; idx++) {
             update(String.valueOf(singleOrders[idx]));
@@ -112,17 +112,9 @@ public class MarsRover {
      * 传进来的Order都是单个有效的Order
      * @param order 命令
      */
-    public void update(String order) {
+    private void update(String order) {
         if (order.equals(ORDER_M)) {
-            if (currDirect.equals(NORTH)) {
-                location.y += 1;
-            } else if (currDirect.equals(SOUTH)) {
-                location.y -= 1;
-            } else if (currDirect.equals(WEST)) {
-                location.x -= 1;
-            } else if (currDirect.equals(EAST)) {
-                location.x += 1;
-            }
+            move();
         } else if (order.equals(ORDER_R)) {
             turnRight();
         } else if (order.equals(ORDER_L)) {
@@ -130,7 +122,7 @@ public class MarsRover {
         }
     }
 
-    public void turnLeft() {
+    private void turnLeft() {
         if (currDirect.equals(NORTH)) {
             currDirect = WEST;
         } else if (currDirect.equals(WEST)) {
@@ -142,7 +134,7 @@ public class MarsRover {
         }
     }
 
-    public void turnRight() {
+    private void turnRight() {
         if (currDirect.equals(NORTH)) {
             currDirect = EAST;
         } else if (currDirect.equals(EAST)) {
@@ -155,7 +147,15 @@ public class MarsRover {
     }
 
     public void move() {
-
+        if (currDirect.equals(NORTH)) {
+            location.y += 1;
+        } else if (currDirect.equals(SOUTH)) {
+            location.y -= 1;
+        } else if (currDirect.equals(WEST)) {
+            location.x -= 1;
+        } else if (currDirect.equals(EAST)) {
+            location.x += 1;
+        }
     }
 
 }
