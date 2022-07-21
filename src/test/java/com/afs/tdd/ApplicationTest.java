@@ -4,7 +4,7 @@ import com.afs.enities.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-class DemoTest {
+class ApplicationTest {
     @Test
     void should_Local_0_1_when_Order_M_given_M()throws Exception {
         //given
