@@ -34,9 +34,23 @@ class ApplicationTest {
         assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
         assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
         assertThat(marsRover.getCurrDirect()).isEqualTo(exceptDirect);
-
-
+    }
+    
+    @Test
+    void should_local_2_0_when_init_local_1_0_E_given_M()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(1, 0, "E");
+        //when
+        marsRover.controlVehicle("M");
+        //then
+        int exceptX  = 2;
+        int exceptY  = 0;
+        String exceptDirect = "E";
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+        assertThat(marsRover.getCurrDirect()).isEqualTo(exceptDirect);
     }
 
+    
     
 }
