@@ -77,12 +77,18 @@ class ApplicationTest {
     }
 
     @Test
-    void should_local_low_1_0_N_when_local_0_0_N_given_RML()throws Exception {
+    void should_local_1_0_N_when_local_0_0_N_given_RML()throws Exception {
         //given
-
+        MarsRover marsRover = new MarsRover(0, 0, "N");
         //when
-
+        marsRover.controlVehicle("RML");
         //then
+        int exceptX  = 1;
+        int exceptY  = 0;
+        String exceptDirect = "N";
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
 
     @Test
