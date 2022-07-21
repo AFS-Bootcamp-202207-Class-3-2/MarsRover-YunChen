@@ -75,7 +75,33 @@ class ApplicationTest {
         String exceptDirect = "E";
         assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
+    @Test
+    void should_heading_W_when_heading_S_given_R()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "S");
+        //when
+        marsRover.controlVehicle("R");
+        //then
+        String exceptDirect = "W";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
+    @Test
+    void should_local_5_4_when_local_5_5_S_given_M()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(5, 5, "S");
+        //when
+        marsRover.controlVehicle("M");
+        //then
+        int exceptX  = 5;
+        int exceptY  = 4;
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+    }
 
+    /**
+     * 下列的测试是batchCommandTest
+     * @throws Exception
+     */
     @Test
     void should_local_1_0_N_when_local_0_0_N_given_RML()throws Exception {
         //given
@@ -121,11 +147,17 @@ class ApplicationTest {
     }
     //LMRMMMLMRM
     @Test
-    void should_local_0_8_N_when_local_0_4_N_given_LMRM_DUMMLMRM()throws Exception {
+    void should_local_low_2_8_N_when_local_0_4_N_given_LMRM_DUMMLMRM()throws Exception {
         //given
-
+        MarsRover marsRover = new MarsRover(0, 4, "N");
         //when
-
+        marsRover.controlVehicle("LMRM DUMMLMRM");
         //then
+        int exceptX  = -2;
+        int exceptY  = 8;
+        String exceptDirect = "N";
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
 }
