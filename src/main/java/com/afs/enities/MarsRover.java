@@ -108,15 +108,50 @@ public class MarsRover {
         }
     }
 
+    /**
+     * 传进来的Order都是单个有效的Order
+     * @param order 命令
+     */
     public void update(String order) {
+        if (order.equals(ORDER_M)) {
+            if (currDirect.equals(NORTH)) {
+                location.y += 1;
+            } else if (currDirect.equals(SOUTH)) {
+                location.y -= 1;
+            } else if (currDirect.equals(WEST)) {
+                location.x -= 1;
+            } else if (currDirect.equals(EAST)) {
+                location.x += 1;
+            }
+        } else if (order.equals(ORDER_R)) {
+            turnRight();
+        } else if (order.equals(ORDER_L)) {
+            turnLeft();
+        }
     }
 
     public void turnLeft() {
-
+        if (currDirect.equals(NORTH)) {
+            currDirect = WEST;
+        } else if (currDirect.equals(WEST)) {
+            currDirect = SOUTH;
+        } else if (currDirect.equals(SOUTH)) {
+            currDirect = EAST;
+        } else if (currDirect.equals(EAST)) {
+            currDirect = NORTH;
+        }
     }
 
     public void turnRight() {
-
+        if (currDirect.equals(NORTH)) {
+            currDirect = EAST;
+        } else if (currDirect.equals(EAST)) {
+            currDirect = SOUTH;
+        } else if (currDirect.equals(SOUTH)) {
+            currDirect = WEST;
+        } else if (currDirect.equals(WEST)) {
+            currDirect = NORTH;
+        }
     }
 
     public void move() {
