@@ -22,7 +22,7 @@ public class MarsRover {
         int x, y;
     }
 
-    private String currDirect;
+    private String heading;
 
 
     private Location location;
@@ -32,7 +32,7 @@ public class MarsRover {
         if (!validSingleDirect(direct)) {
             throw new Exception("Param direction error!");
         }
-        currDirect = direct;
+        heading = direct;
     }
     /**
      * 验证方向是否能有效执行
@@ -123,37 +123,37 @@ public class MarsRover {
     }
 
     private void turnLeft() {
-        if (currDirect.equals(NORTH)) {
-            currDirect = WEST;
-        } else if (currDirect.equals(WEST)) {
-            currDirect = SOUTH;
-        } else if (currDirect.equals(SOUTH)) {
-            currDirect = EAST;
-        } else if (currDirect.equals(EAST)) {
-            currDirect = NORTH;
+        if (heading.equals(NORTH)) {
+            heading = WEST;
+        } else if (heading.equals(WEST)) {
+            heading = SOUTH;
+        } else if (heading.equals(SOUTH)) {
+            heading = EAST;
+        } else if (heading.equals(EAST)) {
+            heading = NORTH;
         }
     }
 
     private void turnRight() {
-        if (currDirect.equals(NORTH)) {
-            currDirect = EAST;
-        } else if (currDirect.equals(EAST)) {
-            currDirect = SOUTH;
-        } else if (currDirect.equals(SOUTH)) {
-            currDirect = WEST;
-        } else if (currDirect.equals(WEST)) {
-            currDirect = NORTH;
+        if (heading.equals(NORTH)) {
+            heading = EAST;
+        } else if (heading.equals(EAST)) {
+            heading = SOUTH;
+        } else if (heading.equals(SOUTH)) {
+            heading = WEST;
+        } else if (heading.equals(WEST)) {
+            heading = NORTH;
         }
     }
 
     public void move() {
-        if (currDirect.equals(NORTH)) {
+        if (heading.equals(NORTH)) {
             location.y += 1;
-        } else if (currDirect.equals(SOUTH)) {
+        } else if (heading.equals(SOUTH)) {
             location.y -= 1;
-        } else if (currDirect.equals(WEST)) {
+        } else if (heading.equals(WEST)) {
             location.x -= 1;
-        } else if (currDirect.equals(EAST)) {
+        } else if (heading.equals(EAST)) {
             location.x += 1;
         }
     }

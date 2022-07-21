@@ -32,7 +32,7 @@ class ApplicationTest {
         String exceptDirect = "N";
         assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
         assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
-        assertThat(marsRover.getCurrDirect()).isEqualTo(exceptDirect);
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
     
     @Test
@@ -47,9 +47,22 @@ class ApplicationTest {
         String exceptDirect = "E";
         assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
         assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
-        assertThat(marsRover.getCurrDirect()).isEqualTo(exceptDirect);
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
 
-    
+    @Test
+    void should_heading_N_when_order_R_given_heading_W()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "W");
+        //when
+        marsRover.controlVehicle("R");
+        //then
+        int exceptX  = 0;
+        int exceptY  = 0;
+        String exceptDirect = "N";
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
     
 }
