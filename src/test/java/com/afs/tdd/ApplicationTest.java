@@ -108,10 +108,16 @@ class ApplicationTest {
     @Test
     void should_local_2_0_N_when_local_1_0_S_given_LMRMLLM()throws Exception {
         //given
-
+        MarsRover marsRover = new MarsRover(1, 0, "S");
         //when
-
+        marsRover.controlVehicle("LMRMLLM");
         //then
+        int exceptX  = 2;
+        int exceptY  = 0;
+        String exceptDirect = "N";
+        assertThat(marsRover.getLocationX()).isEqualTo(exceptX);
+        assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
     //LMRMMMLMRM
     @Test
