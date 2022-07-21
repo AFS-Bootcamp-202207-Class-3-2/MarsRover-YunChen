@@ -7,27 +7,33 @@ group 'com.afs.tdd'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
-
 repositories {
+    mavenLocal()
+    maven {url "https://maven.aliyun.com/repository/public"}
     mavenCentral()
 }
-
 jacocoTestReport {
     reports {
         csv.enabled true
     }
 }
 
+
 dependencies {
-    // Use JUnit Jupiter API for testing.
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    testCompileOnly 'org.projectlombok:lombok:1.18.4'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.4'
+    implementation 'commons-lang:commons-lang:2.6'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
-
-    // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
-
-    testCompile "org.mockito:mockito-core:3.4.0"
+    testImplementation 'org.assertj:assertj-core:3.18.1'
 }
 
 test {
     useJUnitPlatform()
 }
+tasks.withType(GroovyCompile) {   groovyOptions.encoding = "MacRoman"}
+tasks.withType(JavaCompile) {   options.encoding = 'UTF-8'}
+tasks.withType(Javadoc) {   options.encoding = 'UTF-8'}
+
