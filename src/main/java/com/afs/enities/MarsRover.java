@@ -43,7 +43,7 @@ public class MarsRover {
         if (direct != null) {
             direct = direct.toUpperCase();
         }
-        return StringUtils.isEmpty(direct) &&
+        return !StringUtils.isEmpty(direct) &&
                 direct.length() == 1 &&
                 (direct.equals(NORTH) ||
                         direct.equals(EAST) ||
@@ -59,7 +59,7 @@ public class MarsRover {
         if (order != null) {
             order = order.toUpperCase();
         }
-        return StringUtils.isEmpty(order) &&
+        return !StringUtils.isEmpty(order) &&
                 order.length() == 1 &&
                 (order.equals(ORDER_M) ||
                         order.equals(ORDER_L) ||
@@ -84,7 +84,7 @@ public class MarsRover {
         return location.x;
     }
     public int getLocationY() {
-        return location.x;
+        return location.y;
     }
 
 
