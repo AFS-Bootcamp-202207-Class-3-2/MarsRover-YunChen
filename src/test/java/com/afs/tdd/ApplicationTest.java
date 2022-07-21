@@ -64,5 +64,15 @@ class ApplicationTest {
         assertThat(marsRover.getLocationY()).isEqualTo(exceptY);
         assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
-    
+
+    @Test
+    void should_heading_E_when_heading_S_given_L()throws Exception {
+        //given
+        MarsRover marsRover = new MarsRover(0, 0, "S");
+        //when
+        marsRover.controlVehicle("L");
+        //then
+        String exceptDirect = "E";
+        assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
+    }
 }
