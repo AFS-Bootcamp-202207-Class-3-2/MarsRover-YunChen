@@ -75,4 +75,39 @@ class ApplicationTest {
         String exceptDirect = "E";
         assertThat(marsRover.getHeading()).isEqualTo(exceptDirect);
     }
+
+    @Test
+    void should_local_low_1_0_N_when_local_0_0_N_given_RML()throws Exception {
+        //given
+
+        //when
+
+        //then
+    }
+
+    @Test
+    void should_local_low_1_0_N_when_local_0_low_4_N_given_MMLMRMM()throws Exception {
+        //given
+
+        //when
+
+        //then
+    }
+    @Test
+    void should_local_2_0_N_when_local_1_0_S_given_LMRMLLM()throws Exception {
+        //given
+
+        //when
+
+        //then
+    }
+    //LMRMMMLMRM
+    @Test
+    void should_local_0_8_N_when_local_0_4_N_given_LMRM_DUMMLMRM()throws Exception {
+        //given
+
+        //when
+
+        //then
+    }
 }
